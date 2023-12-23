@@ -44,6 +44,10 @@ jobs:
         run: |
           az aks get-credentials --resource-group microservices-shopping-application --name microservices-cluster
 
+      - name: Create ConfigMap
+        run: |
+          kubectl create configmap customers-config --from-env-file=.env.dev
+          
       - name: Apply deployment
         run: |
           kubectl apply -f app-deployment.yaml
