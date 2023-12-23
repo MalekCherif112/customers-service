@@ -52,7 +52,3 @@ jobs:
       - name: Apply deployment
         run: |
           kubectl apply -f app-deployment.yaml
-
-      - name: Monitor deployment
-        run: |
-          kubectl logs deployment/customers-deployment
