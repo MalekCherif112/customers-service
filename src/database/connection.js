@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
-const config = require('../config');
+const { DB_URL } = require('../config');
 
-console.log('config', config);
-console.log('DB_URL', config.DB_URL);
 module.exports = async() => {
-    const DB_URL = config.DB_URL
-
     try {
         console.log('DB_URL', DB_URL);
         await mongoose.connect(DB_URL, {
