@@ -7,12 +7,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
-  steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -23,11 +20,10 @@ jobs:
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
           docker push malekinsat/customers-service:latest
-deploy:
-    runs-on: ubuntu-latest
 
+  deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to Azure
         run: |
           # Add deployment commands here
-  
