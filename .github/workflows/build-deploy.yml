@@ -24,6 +24,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Azure
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+      - name: Set up Azure CLI
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az --version
+            az account show
+
+      - name: Configure AKS access
         run: |
-          # Add deployment commands here
+          az aks get-credentials --resource-group microservices-shopping-application --name microservices-cluster
+
+      - name: Apply deployment
+        run: |
+          kubectl apply -f app-deployment.yaml
+
+      - name: Monitor deployment
+        run: |
+          kubectl logs deployment/customers-deployment
