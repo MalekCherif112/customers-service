@@ -9,7 +9,7 @@ module.exports = async() => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        console.log('Db Connected');
+        console.log('Db Connected with ur: ', DB_URL);
         
     } catch (error) {
         console.log('Error ============')
