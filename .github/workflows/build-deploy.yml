@@ -46,7 +46,7 @@ jobs:
 
       - name: Create ConfigMap
         run: |
-          kubectl create configmap customers-config --from-env-file=.env.dev
+          kubectl create configmap customers-config --from-env-file=.env.dev || true
           
       - name: Apply deployment
         run: |
