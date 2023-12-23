@@ -20,6 +20,9 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8001 # The port that the container is running on in the cluster
+          envFrom:
+            - configMapRef:
+                name: customers-config
 
 
 ---
